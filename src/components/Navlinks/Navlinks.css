@@ -1,0 +1,52 @@
+.navlinks_links {
+    position: fixed;
+    width: 220px;
+    height: 100vh;
+    background-color: #000000;
+    border-right: 1px solid #3b3a3a;
+    color: white;
+    padding-left: 0.5rem;
+}
+
+.insta-logo {
+    padding-left: 12px ;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.navlinks_links .links {
+    display: flex;
+    align-items: center;
+    width: 200px;
+    height: 40px;
+    gap: 15px;
+    font-size: 16px;
+    margin-bottom: 0.7rem;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.navlinks_links .links:hover{
+    background-color: #191919;
+}
+
+.navlinks_links .logo {
+    font-size: 27px;
+    background-color: transparent;
+}
+
+.ham-link {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 200px;
+    height: 40px;
+    bottom: 40px;
+    padding-left: 12px;
+    border-radius: 5px;
+}
+
+.ham-link:hover{
+    background-color: #191919;
+}

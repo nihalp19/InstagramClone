@@ -1,0 +1,65 @@
+
+.profile-suggestions {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    width: 400px;
+    height: 100vh;
+    padding-left: 2rem;
+}
+
+.profile .accounts-box {
+    width: 70%;
+    height: 60px;
+    background-color: #000000;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile .accounts-box>p {
+    color: #1877F2;
+}
+
+.profile .accounts-box .dp-username {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile .accounts-box .dp {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+
+
+.suggestions .accounts-box {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    align-items: center;
+    width: 70%;
+    height: 60px;
+    background-color: #000000;
+}
+
+.suggestions .accounts-box .dp-username {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.suggestions .accounts-box>p {
+    color: #1877F2;
+}
+
+.suggestions .accounts-box .dp {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+}

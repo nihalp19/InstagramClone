@@ -1,0 +1,102 @@
+
+.posts-contents {
+    background-color: #000000;
+    position: absolute;
+    top: 180px;
+    left: 150px;
+    width: 550px;
+    height: 100vh;
+}
+
+.posts-contents .posts-reels{
+    width: 70%;
+    height: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
+
+.posts-reels .username-profile
+{
+    width: 100%;
+    height: 45px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.posts-reels .username-profile .username-followbtn-img{
+    display: flex;
+    align-items: top;
+    gap: 5px;
+}
+
+.posts-reels .username-profile  .username-followbtn-img .dp{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+
+
+.posts-reels .post-img{
+    margin: 7px 0px;
+    width: 100%;
+    height: 500px;
+    border: 1px solid rgb(97, 97, 97);
+    border-radius: 2px;
+}
+
+.posts-reels .username-profile .username-followbtn-img .user{
+    font-size: 14px;
+    margin-left: 3px;
+}
+.posts-reels .username-profile .username-followbtn-img .follow-btn{
+    font-size: 14px;
+    margin-left: 3px;
+    color: #1877F2;
+}
+
+ 
+.comments-links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comments-links .three-icons{
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.comments-links .three-icons .heart{
+    font-size: 28px;
+}
+.comments-links .three-icons .chat{
+    font-size: 22px;
+    margin-left: 1rem;
+}
+.comments-links .three-icons .send{
+    font-size: 22px;
+    margin-left: 1rem;
+}
+
+.comments-links .one-icons .save{
+    font-size: 28px;
+    color: white;
+}
+
+.likes {
+    color: white;
+    font-size: 14px;
+    padding: 5px 0px;
+}
+
+.comment-section{
+    color: white;
+    font-size: 14px;
+    padding: 5px 0px;
+}

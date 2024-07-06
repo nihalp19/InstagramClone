@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
+
+.login {
+    width: 100%;
+    height: 100vh;
+    background-color: #191919;
+    color: white;
+}
+
+.login-contents {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.login-contents>img {
+    width: 380x;
+    height: 500px;
+}
+
+
+
+.inputs-feilds {
+    position: relative;
+    height: 500px;
+    width: 330px;
+    text-align: center;
+
+}
+
+.inputs-feilds>form {
+    border: 1px solid rgb(110, 110, 110);
+    height: 420px;
+}
+
+form>h1 {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    font-family: "Cedarville Cursive", cursive;
+    font-size: 28px;
+}
+
+form>input {
+    width: 80%;
+    height: 35px;
+    padding: 10px;
+    margin-bottom: 0.5rem;
+    background-color: #353535;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.inputs-feilds>form>.password {
+    position: relative;
+}
+
+.inputs-feilds>form>.password>input {
+    width: 80%;
+    height: 35px;
+    padding: 10px;
+    margin-bottom: 1rem;
+    background-color: #353535;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.inputs-feilds>form>.password>p {
+    top: 7px;
+    right: 50px;
+    position: absolute;
+    color: #9e9999;
+    cursor: pointer;
+}
+
+.inputs-feilds>form>button {
+    width: 80%;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    background-color: #0097FE;
+    color: white;
+}
+
+.inputs-feilds>form>.password>p:hover {
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+
+
+.facebook-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #0097FE;
+    margin-bottom: 1rem;
+    font-size: 15px;
+}
+
+.forget-password {
+    color: #737373;
+    font-size: 14px;
+    margin-bottom: 1rem;
+}
+
+.signup-section {
+    margin-top: 0.5rem;
+    border: 1px solid rgb(110, 110, 110);
+    padding: 20px;
+    font-size: 15px;
+    color: #737373;
+}
+
+.signup-section>span {
+    color: #0097FE;
+}
+
+span > Link {
+    color: #737373;
+    text-decoration: none;
+}

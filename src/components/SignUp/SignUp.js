@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import './SignUp.css'
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
@@ -18,7 +18,10 @@ function SignUp() {
     const SIGNUP = async () => {
         try{
             await createUserWithEmailAndPassword(auth,email,password)
+            localStorage.setItem('userToken',auth?.currentUser?.accessToken)
             console.log("successfully signup");
+            console.log("log from signUp",localStorage.getItem('userToken'));
+            navigate('/home')
         }
         catch(err)
         {
@@ -40,6 +43,13 @@ function SignUp() {
         setPassword('')
         
     }
+
+    useEffect(() => {
+        if(localStorage.getItem("userToken"))
+        {
+            navigate('/home')
+        }
+    },[])
 
     const data = {
         Email: email,

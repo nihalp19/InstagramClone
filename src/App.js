@@ -5,24 +5,9 @@ import { useEffect, useState } from "react";
 import { auth } from "./firebase";
 function App() {
 
-  const [user,setUser] = useState(false)
-
-  useEffect(() => {
-    onAuthStateChanged(auth,(user) => {
-      if(user)
-        {
-          setUser(true)
-        }
-        else
-        {
-          setUser(false)
-        }
-    })
-  },[])
-
   return (
     <div className="App">
-      {user ? (<Home/>) : (<Router/>)}
+       <Router/>
     </div>
   );
 }

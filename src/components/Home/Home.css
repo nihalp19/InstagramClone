@@ -33,11 +33,12 @@
 
 .home-contents .createPost .box{
     text-align: center;
-    width: 420px;
-    height: 480px;
+    width: 480px;
+    height: 520px;
     background-color:#262626;
     border-radius: 10px;
 }
+
 .home-contents .createPost .cancel{
     top: 40px;
     right: 50px;
@@ -46,6 +47,17 @@
     font-size: 22px;
     font-weight: 600;
 }
+
+
+
+.home-contents .createPost .box-comments-sections{
+    background-color:#262626;
+    width: 780px;
+    height: 450px;
+    border-radius: 10px;
+}
+
+
 
 
 

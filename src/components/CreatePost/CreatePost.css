@@ -44,10 +44,88 @@
     color: white;
 }
 
-
-.img-active .backward-next {
-    padding: 12px;
+.wrapper .backward-next{
+    width: 100%;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid rgb(97, 97, 97);
 }
+
+.image-comments{
+    width: 480px;
+    height: 520px;
+}
+
+.image-comments .img-active{
+    width: 100%;
+    height: 100%;
+}
+
+
+.image-comments .img-active .img-upload {
+    width: 100%;
+    height: calc(100% - 42px);
+    background-color: black;
+    object-fit: cover;
+}
+
+.image-comments .commets{
+    display: none;
+}
+
+.box-comments-sections{
+    display: flex;
+}
+
+.box-comments-sections .img-active {
+    width: 60%;
+    height: 100%;
+}
+
+.box-comments-sections .img-upload {
+    border-right: 1px solid rgb(137, 137, 137);;
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
+
+.box-comments-sections .commets
+{
+    padding: 5px;
+    width: 40%;
+    height: calc(100% - 42px);
+}
+
+.box-comments-sections .commets .profile
+{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+.box-comments-sections .commets .profile .profile-img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.box-comments-sections .commets .profile .name{
+    color: white;
+}
+
+.box-comments-sections .commets .comments-sections textarea{
+    padding-left: 12px;
+    background-color: #262626;
+    width: 95%;
+    height: 200px;
+    border: none;
+    outline: none;
+    resize: none;
+    color: white
+}
+
+
+

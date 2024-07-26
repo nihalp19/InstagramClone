@@ -1,0 +1,167 @@
+.profile-contents {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: #000000;
+    color: white;
+}
+
+.wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin-left: 220px;
+}
+
+ 
+
+.profile-contents .profile-section{
+    position: relative;
+    width: 900px;
+    height: 350px;
+    display: flex;
+    gap: 4rem;
+    padding: 20px;
+    border-bottom: 1px solid rgb(108, 108, 108);
+}
+
+
+
+.profile-section .profile-pic{
+    position: relative;
+    margin-top: 2rem;
+    margin-left: 4rem;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: white;
+    border: none;
+}
+
+
+.profile-pic > img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-details .line-1 {
+    display: flex;
+    align-items: center;
+    margin-top: 1.1rem;
+}
+
+.line-1 .userName{
+    font-size: 20px;
+}
+
+.line-1 .edit-btn{
+    margin-left: 1rem;
+    padding: 7px 15px;
+    border-radius: 8px;
+    border: none;
+    background-color: #262626;
+    color: white;
+}
+
+.line-1 .view-btn{
+    margin-left: 0.5rem;
+    padding: 7px 15px;
+    border-radius: 8px;
+    border: none;
+    background-color: #262626;
+    color: white;
+}
+
+
+.line-1 .setting-icons{
+    margin-left: 0.5rem;
+    font-size: 26px;
+}
+
+.profile-details .following-followers{
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.profile-details .following .posts{
+    font-size: 14px;
+}
+.profile-details .following .followers{
+    font-size: 14px;
+}
+.profile-details .following .following{
+    font-size: 14px;
+}
+
+.profile-details .name-bio{
+    margin-top: 1.5rem;
+}
+
+.profile-details .name-bio .name{
+    font-size: 14px;
+}
+
+.profile-details .name-bio .bio{
+    font-size: 14px;
+}
+
+.wrapper .routing{
+    display: flex;
+    gap: 4rem;
+    color: white;
+}
+
+.wrapper .routing .post{
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+}
+
+.wrapper .routing .post:active{
+    border-top: 1px solid white;
+}
+
+.wrapper .routing .saved{
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+}
+
+.wrapper .routing .saved:active{
+    border-top: 1px solid white;
+}
+
+.wrapper .routing .tagged{
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+}
+
+.wrapper .routing .tagged:active{
+    border-top: 1px solid white;
+}
+
+.routing .display-result{
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+
+
+
+
+
+
+

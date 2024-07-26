@@ -1,54 +1,45 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import './CreatePost.css'
-import './Screenshot_2024-07-06_102916-removebg-preview.png'
-import { FaArrowLeftLong } from "react-icons/fa6";
+import { HiOutlineArrowLeft } from "react-icons/hi";
 import UserContext from '../../Context/UserContext';
-
 function CreatePost(props) {
+
     const { caption, setCaption } = useContext(UserContext)
 
     const handleChange = (e) => {
-        console.log(e.target.files);
+        console.log(e.target.files[0]);
         props.setFile(URL.createObjectURL(e.target.files[0]))
-        props.setImg(true);
+        props.setImg(true)
+    }
+
+    const backPost = () => {
+        props.setFile()
+        props.setImg(false)
     }
 
     return (
-        <div className='CreatePost'>
-            {props.img ?
-                <div className='wrapper'>
-                    <div className='backward-next'>
-                        <FaArrowLeftLong style={{ color: 'white' }} onClick={() => setCaption(false)}/>
-                        <p style={{ color: '#1877F2' }} onClick={() => setCaption(true)}>{caption ? "Share": "Next"}</p>
-                    </div>
-                    <div className={caption ? 'box-comments-sections' : 'image-comments'}>
-                        <div className='img-active'>
-                            <img className='img-upload' src={props.file} />
-                        </div>
-                        <div className="commets">
-                            <div className='profile'>
-                                <div className="profile-img"></div>
-                                <div className="name">nihal</div>
-                            </div>
-                            <div className="comments-sections">
-                                <textarea name="" id="" placeholder='write a caption'></textarea>
-                            </div>
-                        </div>
-                    </div>
+        <div>
+            {props.img ? <div className={caption ? 'createpost-caption' : 'createpost-div-2'}>
+                <div className="heading-2">
+                    <HiOutlineArrowLeft style={{ color: 'white' }} onClick={backPost} />
+                    <p style={{ color: 'white' }} onClick={() => setCaption(true)}>{caption ? 'Share' : 'Next'}</p>
                 </div>
-                :
-                <div className="create-post-div">
-                    <h2 >Create new post</h2>
-                    <img className='logo-img' src={require('./Screenshot_2024-07-06_102916-removebg-preview.png')} alt="" />
-                    <h3>Drag Photos and videos Here</h3>
-                    <div className='file-btn'>
-                        <input type="file" onChange={handleChange} accept='image/*,videos/*' />
-                        <button>Select from computer</button>
-                    </div>
-
+                <div className={caption ? 'caption-on' : ''}>
+                    <img src={props.file} alt="" className='img-preview' />
+                    <textarea style={{outline:'none',width:'200px', height:'100px', resize:'none'} }></textarea>
                 </div>
-            }
+            </div> :
+                <div className='createpost-div-1'>
+                    <p className='heading-1'>Create New Post</p>
+                    <img className='img-logo' src={require('./Screenshot_2024-07-06_102916-removebg-preview.png')} alt="" />
+                    <h3>Drag photos and videos here</h3>
+                    <button>select from button</button>
+                    <input className='file-select' type="file" accept='image/*,video/*' onChange={handleChange} />
+                    <img src={props.file} alt="" />
+                </div>}
         </div>
+
+
     )
 }
 

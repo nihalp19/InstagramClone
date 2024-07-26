@@ -45,7 +45,7 @@ function Navlinks(props) {
                 <MdAddBox className='logo' />
                 Create
             </div>
-            <div className="links">
+            <div className="links" onClick={() => navigate('/profile')}>
                 <CgProfile className='logo' />
                 Profile
             </div>

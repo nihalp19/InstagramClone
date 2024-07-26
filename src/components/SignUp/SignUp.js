@@ -19,6 +19,7 @@ function SignUp() {
         try{
             await createUserWithEmailAndPassword(auth,email,password)
             localStorage.setItem('userToken',auth?.currentUser?.accessToken)
+            localStorage.setItem('email',email)
             console.log("successfully signup");
             console.log("log from signUp",localStorage.getItem('userToken'));
             navigate('/home')

@@ -8,12 +8,11 @@ import CreatePost from '../CreatePost/CreatePost';
 import UserContext from '../../Context/UserContext';
 import { auth } from '../../firebase';
 import { signOut } from 'firebase/auth';
-import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 
-
 function Home() {
+    
     const { caption, setCaption } = useContext(UserContext)
     const [creatPost, setCreatePost] = useState(false);
     const [file, setFile] = useState()
@@ -21,16 +20,15 @@ function Home() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(!localStorage.getItem("userToken"))
-        {
+        if (!localStorage.getItem("userToken")) {
             navigate('/')
         }
-    },[])
+    }, [])
 
     const Logout = async () => {
         await signOut(auth)
         localStorage.removeItem('userToken')
-        console.log("log from signout",localStorage.getItem('userToken'));
+        console.log("log from signout", localStorage.getItem('userToken'));
         navigate('/')
     }
 
@@ -40,9 +38,18 @@ function Home() {
         setImg(false);
         setFile();
     }
+    console.log(document.querySelector('body'));
+    if (creatPost) {
+        document.querySelector('body').classList.remove('scrollOn')
+        document.querySelector('body').classList.add('scrollOff')
+    } 
+    else {
+        document.querySelector('body').classList.add('scrollOn')
+        document.querySelector('body').classList.remove('scrollOff')
+    }
 
     return (
-        <div className='home'>
+        <div className={creatPost ? "home" : "homme"}>
             <div className='home-contents'>
                 <div className="createPost" style={creatPost ? {} : { display: 'none' }}>
                     <div className={caption ? "box-comments-sections" : "box"}>

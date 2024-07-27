@@ -10,30 +10,34 @@ import { getDocs, collection, addDoc, query } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../../firebase';
-import { useId } from 'react';
+import { nanoid } from 'nanoid';
 
 function Profile() {
 
     const [currentUserData, setcurrentUserData] = useState([])
     const [profilImg, setProfileImg] = useState();
+    const [profileImgUrl, setProfileImgUrl] = useState();
     const docRef = collection(db, "users");
 
-    const Idd = useId();
-
-    const handleImageClick = async () => {
+    const id = nanoid();
+    const imgRef = ref(storage,`images/profile${auth?.currentUser?.email}${id}`)
+    const handleImageClick =  () => {
         document.querySelector('.fileImg').click();
-        if (profilImg == null) return;
-        const imgRef = ref(storage, `images/${Idd}`)
-        uploadBytes(imgRef, profilImg).then((res) => {
-            console.log(res);
-        }).catch((res) => {
-            console.log(res);
-        })
+    }
 
-            const storageRef = ref(storage, `images${Idd}`)
-            const url = await getDownloadURL(storageRef);
-            console.log(url);
-            setProfileImg(url);
+    const handleImageChange = async (e) => {
+        const file = e.target.files[0];
+        if(file)
+        {
+            setProfileImg(file)
+            const metadata = {
+                contentType: file.type,
+            }
+            await uploadBytes(imgRef,file,metadata)
+            const downloadUrl = await getDownloadURL(imgRef)
+            setProfileImgUrl(downloadUrl)
+            localStorage.setItem('imageUrl',downloadUrl);
+        }
     }
 
 
@@ -41,9 +45,7 @@ function Profile() {
         const func = async () => {
             const users = await getDocs(docRef)
             const snapShot = users.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-            console.log(snapShot);
             const filterData = snapShot.filter((s) => { return s.Email == localStorage.getItem('email') })
-            console.log(filterData);
             setcurrentUserData(filterData);
         }
         func();
@@ -57,8 +59,8 @@ function Profile() {
                 <div className="wrapper">
                     <div className="profile-section">
                         <div className="profile-pic">
-                            <input className='fileImg' type="file" accept='video/*,image/*' style={{ display: 'none' }} multiple={false} />
-                            <img src={profilImg} onClick={handleImageClick} />
+                            <input className='fileImg' type="file" accept='video/*,image/*' style={{ display: 'none' }} multiple={false} onChange={handleImageChange}/>
+                                <img src={localStorage.getItem('imageUrl')~}  onClick={handleImageClick} />
                         </div>
                         <div className="profile-details">
                             <div className="line-1">

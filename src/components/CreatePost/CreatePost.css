@@ -1,93 +1,152 @@
-.createpost-div-1 {
+.creatpost{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.285);
+    color: white;
+}
+
+.creatpost-div-2{
+    width: 420px;
+    height: 490px;
+    background-color: #262626;
     text-align: center;
-    width: 480px;
-    height: 520px;
+    color: white;
     border-radius: 10px;
-    position: relative;
-    color: white;
-    background-color:#262626;
 }
 
-.createpost-div-1 .heading-1 {
-    font-size: 16px;
-    font-weight: 600;
-    color: white;
+.creatpost-div-2 > h4{
+    font-weight: 400;
     padding: 10px;
-    border-bottom: 1px solid rgb(109, 109, 109);
+    border-bottom: 1px solid rgb(149, 149, 149);
 }
 
+.creatpost-div-2 .next-left-arrow
+{
+    font-weight: 400;
+    padding: 10px;
+    border-bottom: 1px solid rgb(149, 149, 149);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-.createpost-div-1 .img-logo {
+.next-left-arrow .next:hover{
+    color:#1877F2;
+}
+
+.creatpost-div-2 .logo-img{
     width: 120px;
     margin-top: 30%;
 }
 
-.createpost-div-1>h3 {
+.creatpost-div-2 > h3{
+    padding: 1rem;
     font-weight: 400;
-    padding: 10px;
 }
 
-.createpost-div-1>button {
-    position: relative;
-    padding: 5px 15px;
-    border-radius: 5px;
-    border: none;
+.creatpost-div-2 > button{
+    padding: 5px 10px;
     background-color: #1877F2;
+    border: none;
     color: white;
+    border-radius: 5px;
 }
 
-.createpost-div-1>.file-select {
-    position: absolute;
-    opacity: 0;
-    z-index: 11;
-    left: 170px;
-    width: 150px;
-}
-
-.createpost-div-2{
-    width: 480px;
-    height: 520px;
-    border-radius: 10px;
-    position: relative;
-    color: white;
-    background-color:#262626;
-}
-
-
-.createpost-div-2 .heading-2 {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid rgb(109, 109, 109);
-}
-
-.createpost-div-2 .img-preview{
+.creatpost-div-2 .image-textarea{
     width: 100%;
     height: 100%;
-    object-fit: cover;
 }
 
-.createpost-caption {
-    width: 720px;
-    height: 450px;
-    background-color:#262626;
+.creatpost-div-2 .image-textarea .previewImage{
+    width: 100%;
+    height: calc(100% - 42px);
+    border-radius: 5px;
+}
+
+.creatpost-caption-section{
+    transition: all 0.5s ease-in;
+    width: 800px;
+    height: 500px;
+    background-color: #262626;
+    color: white;
     border-radius: 10px;
 }
 
-.createpost-caption .heading-2 {
+.creatpost-caption-section .next-left-arrow
+{
+    font-weight: 400;
+    padding: 10px;
+    border-bottom: 1px solid rgb(149, 149, 149);
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid rgb(109, 109, 109);
+    align-items: center;
 }
 
-.createpost-caption .caption-on{
+.creatpost-caption-section .next-left-arrow .share:hover{
+    color: #1877F2;
+}
+
+.creatpost-caption-section .image-textarea {
+    width: 100%;
+    height: 100%;
     display: flex;
 }
 
-.createpost-caption .caption-on .img-preview{
-    width: 70%;
-    height: 100%;
+.creatpost-caption-section .image-textarea .previewImage{
+    width: 60%;
+    height: calc(100% - 42px);
     object-fit: cover;
 }
+
+
+.creatpost-caption-section .image-textarea .caption-section{
+    width: 40%;
+    height: calc(100% - 42px);
+    padding: 10px;
+    text-align: center;
+}
+
+.creatpost-caption-section .image-textarea .caption-section .profile-info{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.creatpost-caption-section .image-textarea .caption-section .profile-img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: white;
+}
+.creatpost-caption-section .image-textarea .caption-section .username{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.creatpost-caption-section .image-textarea .caption-section > textarea{
+    padding: 10px;
+    width: 280px;
+    height: 180px;
+    background-color: #262626;
+    border: none;
+    resize: none;
+    color: white;
+    margin-top: 10px;
+}
+
+.creatpost > p {
+    font-size: 22px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+
+
+
 

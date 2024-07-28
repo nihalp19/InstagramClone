@@ -6,6 +6,12 @@
     color: white;
 }
 
+.profile-contents .createpost{
+    width: 100%;
+    position: absolute;
+    z-index: 12;
+}
+
 .wrapper{
     width: 100%;
     display: flex;

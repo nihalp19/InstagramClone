@@ -1,45 +1,95 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import './CreatePost.css'
-import { HiOutlineArrowLeft } from "react-icons/hi";
-import UserContext from '../../Context/UserContext';
-function CreatePost(props) {
+import UserContext from '../../Context/UserContext'
+import { FaArrowLeft } from "react-icons/fa6";
+import { storage } from '../../firebase';
+import { ref, uploadBytes } from 'firebase/storage';
+import { nanoid } from 'nanoid';
+import { auth } from '../../firebase';
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../../firebase';
 
-    const { caption, setCaption } = useContext(UserContext)
+function CreatePost() {
+    const [imgPreview, setimgPreview] = useState();
+    const [currentUserData, setcurrentUserData] = useState([])
+    const [file, setFile] = useState({})
+    const { caption, setCreatePost, setCaption } = useContext(UserContext)
+    const id = nanoid()
+    const docRef = collection(db, "users");
 
-    const handleChange = (e) => {
-        console.log(e.target.files[0]);
-        props.setFile(URL.createObjectURL(e.target.files[0]))
-        props.setImg(true)
+    useEffect(() => {
+        const func = async () => {
+            const users = await getDocs(docRef)
+            const snapShot = users.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            const filterData = snapShot.filter((s) => { return s.Email == localStorage.getItem('email') })
+            setcurrentUserData(filterData);
+        }
+        func();
+    }, [])
+
+    const handleClick = () => {
+        document.querySelector('.input-img').click()
     }
 
-    const backPost = () => {
-        props.setFile()
-        props.setImg(false)
+
+    const handleImage = (e) => {
+        setFile(e.target.files[0])
+        setimgPreview(URL.createObjectURL(e.target.files[0]))
     }
+
+
+    const handleCancel = () => {
+        setCreatePost(false);
+        setCaption(false)
+        setimgPreview();
+    }
+
+    const uploadPost = async () => {
+        const imgRef = ref(storage, `posts/post${auth?.currentUser?.email}${id}`)
+        const metadata = {
+            contentType: file.type,
+        }
+        try {
+            await uploadBytes(imgRef, file, metadata)
+            console.log('Upload successful');
+        } catch (error) {
+            console.error('Upload failed:', error.message);
+        }
+        setCreatePost(false)
+    }
+
+
 
     return (
-        <div>
-            {props.img ? <div className={caption ? 'createpost-caption' : 'createpost-div-2'}>
-                <div className="heading-2">
-                    <HiOutlineArrowLeft style={{ color: 'white' }} onClick={backPost} />
-                    <p style={{ color: 'white' }} onClick={() => setCaption(true)}>{caption ? 'Share' : 'Next'}</p>
-                </div>
-                <div className={caption ? 'caption-on' : ''}>
-                    <img src={props.file} alt="" className='img-preview' />
-                    <textarea style={{outline:'none',width:'200px', height:'100px', resize:'none'} }></textarea>
-                </div>
-            </div> :
-                <div className='createpost-div-1'>
-                    <p className='heading-1'>Create New Post</p>
-                    <img className='img-logo' src={require('./Screenshot_2024-07-06_102916-removebg-preview.png')} alt="" />
-                    <h3>Drag photos and videos here</h3>
-                    <button>select from button</button>
-                    <input className='file-select' type="file" accept='image/*,video/*' onChange={handleChange} />
-                    <img src={props.file} alt="" />
-                </div>}
+        <div className="creatpost">
+            <div className='creatpost-div-1'>
+                {imgPreview ? (<div className={caption ? 'creatpost-caption-section' : 'creatpost-div-2'}>
+                    <div className='next-left-arrow'>
+                        <FaArrowLeft onClick={() => setCaption(false)} />
+                        <p className='next' style={caption ? { display: 'none' } : { display: 'block' }} onClick={() => setCaption(true)}>Next</p>
+                        <p className='share' style={caption ? { display: 'block' } : { display: 'none' }} onClick={uploadPost}>Share</p>
+                    </div>
+                    <div className="image-textarea">
+                        <img className='previewImage' src={imgPreview} alt="" />
+                        <div className="caption-section" style={caption ? { display: 'block' } : { display: 'none' }}>
+                            <div className="profile-info">
+                                <img src={localStorage.getItem('profileimageUrl')} className="profile-img" />
+                                <p className='username'>{currentUserData.map((c) => { return (c.userName) })}</p>
+                            </div>
+                            <textarea name="" id="" ></textarea>
+                        </div>
+                    </div>
+                </div>) : (
+                    <div className='creatpost-div-2'>
+                        <h4>Create new post</h4>
+                        <img className="logo-img" src={require('./Screenshot_2024-07-06_102916-removebg-preview.png')} alt="" />
+                        <h3>Drag photos and videos here</h3>
+                        <button onClick={handleClick}>Select from computer<input type="file" className='input-img' accept='image/*,video/*' multiple={false} onChange={handleImage} style={{ display: 'none' }} /></button>
+                    </div>)
+                }
+            </div>
+            <p onClick={handleCancel}>X</p>
         </div>
-
-
     )
 }
 

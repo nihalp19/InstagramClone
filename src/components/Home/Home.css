@@ -28,33 +28,13 @@
     margin-left: 240px;
 }
 
-.home-contents .createPost{
-    background-color: rgba(13, 13, 13, 0.436);
-    z-index: 10;
-    position: absolute;
+.home-contents .createpost{
     width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.home-contents .createPost .box{
-    text-align: center;
-    width: 480px;
-    height: 520px;
-    background-color:#262626;
-    border-radius: 10px;
-}
-
-.home-contents .createPost .cancel{
-    top: 40px;
-    right: 50px;
     position: absolute;
-    color: white;
-    font-size: 22px;
-    font-weight: 600;
+    z-index: 12;
 }
+
+
 
 
 

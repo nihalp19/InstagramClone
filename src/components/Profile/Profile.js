@@ -1,4 +1,4 @@
-import Reactemail, { useEffect, useState } from 'react'
+import Reactemail, { useContext, useEffect, useState } from 'react'
 import './Profile.css'
 import Navlinks from '../Navlinks/Navlinks'
 import { IoSettingsSharp } from "react-icons/io5";
@@ -11,8 +11,12 @@ import { auth, db } from '../../firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../../firebase';
 import { nanoid } from 'nanoid';
+import UserContext from '../../Context/UserContext';
+import CreatePost from '../CreatePost/CreatePost';
 
 function Profile() {
+
+    const { createPost } = useContext(UserContext)
 
     const [currentUserData, setcurrentUserData] = useState([])
     const [profilImg, setProfileImg] = useState();
@@ -20,23 +24,35 @@ function Profile() {
     const docRef = collection(db, "users");
 
     const id = nanoid();
-    const imgRef = ref(storage,`images/profile${auth?.currentUser?.email}${id}`)
-    const handleImageClick =  () => {
+    const imgRef = ref(storage, `profileImage/profile${auth?.currentUser?.email}${id}`)
+    const handleImageClick = () => {
         document.querySelector('.fileImg').click();
     }
 
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
-        if(file)
-        {
+        if (file) {
             setProfileImg(file)
             const metadata = {
                 contentType: file.type,
             }
-            await uploadBytes(imgRef,file,metadata)
-            const downloadUrl = await getDownloadURL(imgRef)
-            setProfileImgUrl(downloadUrl)
-            localStorage.setItem('imageUrl',downloadUrl);
+            try {
+                await uploadBytes(imgRef, file, metadata)
+                console.log("profileImg Uploaded sucessFully");
+            }
+            catch (err) {
+                console.error(err);
+            }
+            try {
+                const downloadUrl = await getDownloadURL(imgRef)
+                console.log("url downloaded sucessfully");
+                setProfileImgUrl(downloadUrl)
+                localStorage.setItem('profileimageUrl', downloadUrl);
+            }
+            catch(err)
+            {
+                console.error(err);
+            }
         }
     }
 
@@ -56,11 +72,14 @@ function Profile() {
         <div className='profile'>
             <div className="profile-contents">
                 <Navlinks />
+                <div className="createpost" style={createPost ? { display: 'block' } : { display: 'none' }}>
+                    <CreatePost />
+                </div>
                 <div className="wrapper">
                     <div className="profile-section">
                         <div className="profile-pic">
-                            <input className='fileImg' type="file" accept='video/*,image/*' style={{ display: 'none' }} multiple={false} onChange={handleImageChange}/>
-                                <img src={localStorage.getItem('imageUrl')~}  onClick={handleImageClick} />
+                            <input className='fileImg' type="file" accept='video/*,image/*' style={{ display: 'none' }} multiple={false} onChange={handleImageChange} />
+                            <img src={localStorage.getItem('profileimageUrl')} onClick={handleImageClick} />
                         </div>
                         <div className="profile-details">
                             <div className="line-1">

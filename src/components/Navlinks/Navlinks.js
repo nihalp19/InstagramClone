@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { GoHome } from "react-icons/go";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineExplore } from "react-icons/md";
@@ -9,11 +9,13 @@ import { MdAddBox } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useNavigate } from 'react-router-dom';
-
 import './Navlinks.css'
-function Navlinks(props) { 
+import UserContext from '../../Context/UserContext';
+
+function Navlinks() { 
     const navigate = useNavigate()
 
+    const {setCreatePost} = useContext(UserContext)
     return (
         <div className="navlinks_links">
             <h2 className='insta-logo'>Instagram</h2>
@@ -41,12 +43,12 @@ function Navlinks(props) {
                 <CiHeart className='logo' />
                 Notifications
             </div>
-            <div className="links" onClick={() => props.setCreatePost(!props.creatPost)}>
+            <div className="links" onClick={() => setCreatePost(true)}>
                 <MdAddBox className='logo' />
                 Create
             </div>
             <div className="links" onClick={() => navigate('/profile')}>
-                <CgProfile className='logo' />
+                <img src={localStorage.getItem('profileimageUrl')}  className="profile"/>
                 Profile
             </div>
             <div className="ham-link">

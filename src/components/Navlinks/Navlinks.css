@@ -26,6 +26,14 @@
     border-radius: 5px;
 }
 
+.links > .profile{
+    margin-left: 3px;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background-color: white;
+}
+
 .navlinks_links .links:hover{
     background-color: #191919;
 }

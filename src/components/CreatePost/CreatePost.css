@@ -136,7 +136,8 @@
     border: none;
     resize: none;
     color: white;
-    margin-top: 10px;
+    margin-top: 5px;
+    outline: none;
 }
 
 .creatpost > p {

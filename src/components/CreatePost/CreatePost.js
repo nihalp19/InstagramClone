@@ -6,25 +6,39 @@ import { storage } from '../../firebase';
 import { ref, uploadBytes } from 'firebase/storage';
 import { nanoid } from 'nanoid';
 import { auth } from '../../firebase';
-import { getDocs, collection } from 'firebase/firestore';
+import { addDoc, getDocs, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 
 function CreatePost() {
     const [imgPreview, setimgPreview] = useState();
     const [currentUserData, setcurrentUserData] = useState([])
+    const [captionText, setcaptionText] = useState('')
     const [file, setFile] = useState({})
     const { caption, setCreatePost, setCaption } = useContext(UserContext)
     const id = nanoid()
     const docRef = collection(db, "users");
+    const addDocRef = collection(db, "postCaption")
+
+    const captionData = {
+        text: captionText,
+        id:id,
+    }
 
     useEffect(() => {
-        const func = async () => {
-            const users = await getDocs(docRef)
-            const snapShot = users.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-            const filterData = snapShot.filter((s) => { return s.Email == localStorage.getItem('email') })
-            setcurrentUserData(filterData);
+        const fetchData1 = async () => {
+            try {
+                const users = await getDocs(docRef)
+                const snapShot = users.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+                const filterData = snapShot.filter((s) => { return s.Email == localStorage.getItem('email') })
+                setcurrentUserData(filterData);
+                console.log('data fetch for username sucessfully');
+            }
+            catch (err) {
+                console.error(err);
+            }
+
         }
-        func();
+        fetchData1();
     }, [])
 
     const handleClick = () => {
@@ -45,7 +59,7 @@ function CreatePost() {
     }
 
     const uploadPost = async () => {
-        const imgRef = ref(storage, `posts/post${auth?.currentUser?.email}${id}`)
+        const imgRef = ref(storage, `posts/${id}`)
         const metadata = {
             contentType: file.type,
         }
@@ -55,7 +69,16 @@ function CreatePost() {
         } catch (error) {
             console.error('Upload failed:', error.message);
         }
+        try {
+            await addDoc(addDocRef, captionData)
+            console.log('caption added');
+        }
+        catch (err) {
+            console.error(err);
+        }
         setCreatePost(false)
+        setcaptionText('')
+        setFile();
     }
 
 
@@ -76,7 +99,7 @@ function CreatePost() {
                                 <img src={localStorage.getItem('profileimageUrl')} className="profile-img" />
                                 <p className='username'>{currentUserData.map((c) => { return (c.userName) })}</p>
                             </div>
-                            <textarea name="" id="" ></textarea>
+                            <textarea value={captionText} placeholder='Write a caption...' onChange={(e) => setcaptionText(e.target.value)}></textarea>
                         </div>
                     </div>
                 </div>) : (

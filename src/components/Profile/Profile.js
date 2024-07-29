@@ -45,6 +45,7 @@ function Profile() {
             }
             try {
                 const downloadUrl = await getDownloadURL(imgRef)
+                console.log(downloadUrl);
                 console.log("url downloaded sucessfully");
                 setProfileImgUrl(downloadUrl)
                 localStorage.setItem('profileimageUrl', downloadUrl);
